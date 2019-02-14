@@ -1,7 +1,7 @@
 
 class HelloController {
 
-	hello(req, res) {
+	async hello(req, res) {
 		res.json({
 			hello: req.user.username,
 		});

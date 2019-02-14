@@ -4,8 +4,9 @@ const BearerStrategy = require('passport-http-bearer').Strategy;
 
 const jwtStrategy = require('../utils/jwt_strategy');
 
-const strategy = new BearerStrategy(jwtStrategy);
+module.exports = () => {
+	const strategy = new BearerStrategy(jwtStrategy);
 
-passport.use(strategy);
-
-module.exports = passport.authenticate('bearer', { session: false });
+	passport.use(strategy);
+	return passport.authenticate('bearer', { session: false });
+};
