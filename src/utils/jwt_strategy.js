@@ -9,6 +9,6 @@ module.exports = (token, cb) => {
 		if (err) {
 			return cb(new ErrorObject(err.message, 401));
 		}
-		cb(err, decoded, { scope: 'all' });
+		cb(null, decoded, { scope: 'all' });
 	});
 };
