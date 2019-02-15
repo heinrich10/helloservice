@@ -24,9 +24,9 @@
     "supertest": "^3.4.2"
   },
   "scripts": {
-    "test:integration": "mocha test/integration/*.js ",
-    "test:unit": "mocha test/unit/**/*.js",
-    "test": "npm run test:unit && npm run test:integration",
+    "test:integration": "nyc mocha test/integration/*.js ",
+    "test:unit": "nyc mocha test/unit/**/*.js",
+    "test": "nyc mocha --recursive ./test",
     "lint": "eslint ."
   },
   "author": "heinrich10",
