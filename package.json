@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "amk-error": "^0.1.0",
+    "amk-monit-plugin": "^0.1.0",
     "amk-wrap": "^0.1.0",
     "api-error-handler": "^1.0.0",
     "express": "^4.16.4",
@@ -19,7 +20,7 @@
     "eslint": "^5.13.0",
     "eslint-config-amk": "^0.1.0",
     "mocha": "^5.2.0",
-    "nyc": "^13.2.0",
+    "nyc": "^13.3.0",
     "sinon": "^7.2.3",
     "supertest": "^3.4.2"
   },

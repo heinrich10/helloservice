@@ -2,6 +2,7 @@ const express = require('express');
 const responseTime = require('response-time');
 const errorHandler = require('api-error-handler');
 const wrap = require('amk-wrap');
+const healthCheck = require('amk-monit-plugin');
 
 const auth = require('./middlewares/auth');
 const HelloController = require('./controllers/hello_controller');
@@ -12,6 +13,7 @@ module.exports = () => {
 	const helloController = new HelloController();
 
 	app.use(responseTime());
+	app.get('/check', healthCheck);
 	app.get('/hello', auth(), wrap(helloController.hello));
 	app.use(errorHandler());
 
