@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloservice-deployment
+  labels:
+    app: helloservice
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: helloservice
+  template:
+    metadata:
+      labels:
+        app: helloservice
+    spec:
+      containers:
+      - name: helloservice
+        image: heinrich10/helloservice:latest
+        ports:
+        - name: hello-port
+          containerPort: 6020
+        readinessProbe:
+          httpGet:
+            path: /check
+            port: hello-port
+          initialDelaySeconds: 30
+          periodSeconds: 3
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: helloservice-svc
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: helloservice-route
+      prefix: /world/
+      service: helloservice-svc:6020
+spec:
+  selector:
+    app: helloservice
+  ports:
+  - protocol: TCP
+    port: 6020
